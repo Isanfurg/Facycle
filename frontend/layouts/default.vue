@@ -1,92 +1,92 @@
-<template>
-  <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
+<template witdh="100%" height="100" class="ma-0 pa-0">
+  <v-app>
+    <v-toolbar dense fluid height="60px" max-height="60px" color="#73777B" class="ma-0 pa-0">
+      
+     <router-link to="/" class="ma-0 pa-0">
+       <v-img contain min-height="50px" max-height="50px"  max-width="100px" src="logo.png" class="ma-0 pa-0"></v-img> 
+     </router-link>
+      <router-link v-for="link in links" :key="link.tittle" :to="link.ref" class="hidden-sm-and-down">
+        <v-btn
+          large
+          plain
+          class="text-center white--text"
+          color="#02B5C2"
         >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="fixed = !fixed">
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
-    </v-app-bar>
-    <v-main>
-      <v-container>
-        <Nuxt />
-      </v-container>
-    </v-main>
-    <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light> mdi-repeat </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
+          {{ link.tittle }}
+        </v-btn>
+      </router-link>
+      <v-spacer/>
+
+    </v-toolbar>
+    
+    <Nuxt />
+    <v-card fluid absolute width="100%" min-height="60px" max-height="150px" color="#73777B" elevation="4" class="ma-0 pa-0 pt-4">
+      <v-card-text class="ma-0 pa-0 px-5">
+        <v-row class="ma-0 pa-0">
+          <v-col sm="12" md="3" class="ma-0 pa-0">
+            <v-btn
+              v-for="icon in icons"
+              :key="icon"
+              class="mx-1"
+              icon
+              style="color: white"
+            >
+              <v-icon size="24px">
+                {{ icon }}
+              </v-icon>
+            </v-btn>
+          </v-col>
+          <v-col
+            sm="12"
+            md="6"
+            justify="center"
+            style="color: white"
+            class="text-center ma-0 pa-0"
+          >
+            Facycle®2022
+          </v-col>
+          <v-col
+            sm="12"
+            md="3"
+
+            justify="right"
+            style="color: white"
+            class="text-right ma-0 pa-0"
+          >
+            TTC
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
   </v-app>
 </template>
+
 
 <script>
 export default {
   name: 'DefaultLayout',
-  data() {
+  data () {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
+      icons: [
+        'mdi-chart-bubble',
+        'mdi-facebook',
+        'mdi-twitter',
+        'mdi-linkedin',
+        'mdi-instagram',
+      ],
+      links: [
+
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/',
+          tittle: 'Registrar',
+          ref: '/',
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire',
+          tittle: 'Abrir Candado',
+          ref: '/sensor',
+
         },
       ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js',
     }
-  },
+  }
 }
 </script>
