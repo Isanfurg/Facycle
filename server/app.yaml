@@ -1,0 +1,10 @@
+runtime: nodejs16
+instance_class: B1
+basic_scaling:
+  max_instances: 2
+  idle_timeout: 30m
+
+service: server
+handlers:
+  - url: /.*
+    script: auto
