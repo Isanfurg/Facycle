@@ -142,7 +142,7 @@ export default {
         let formData = new FormData();
         formData.append('image',this.captures[i])
         //I am posting the data converted to FormData using Axios to Flask.
-        axios.post('http://127.0.0.1:5000/api/upload/'+this.user.email+'', formData).then(function (response) {
+        axios.post('http://127.0.0.1:5000/api/upload/'+this.user.email+'/'+i, formData).then(function (response) {
         console.log(response)
          })
          .catch(e => {

@@ -11,7 +11,7 @@ import base64
 import cv2
 
 def check_path(path):
-    if not os.path.exists(path):
+    if not os.path.exists('backend/'+path):
         os.makedirs('backend/'+path)
 
 def count_path(path):
@@ -31,7 +31,7 @@ config = {
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
-app.config['UPLOAD_FOLDER'] = 'uploads/'
+
 CORS(app)
 
 
@@ -66,18 +66,18 @@ def add_user(email,user,pwd):
     conn.commit() 
     return jsonify({'result': 'success'})
 
-@app.route('/api/upload/<email>', methods=['POST'])
-def uploadImage(email):
+@app.route('/api/upload/<email>/<i>', methods=['POST'])
+def uploadImage(email,i):
     path_save="uploads/"+email
     check_path(path_save)
-    n_photos=count_path(path_save)
     if request.method == 'POST':
+        app.config['UPLOAD_FOLDER'] = path_save
         base64_png =  request.form['image']
         code = base64.b64decode(base64_png.split(',')[1]) 
         image_decoded = Image.open(BytesIO(code))
-        name = 'image'+str(n_photos+1)+'.png'
-        image_decoded.save(Path(app.config[path_save]) / name )
-        return make_response(jsonify({'result': 'success'}))
-    return make_response(jsonify({'result': 'error in upload'}), 400)
+        name = 'backend/'+path_save+'/image'+str(int(i)+1)+'.png'
+        image_decoded.save(name )
+        return jsonify({'result': 'success'})
+    return jsonify({'result': 'error in upload'})
 
 app.run()
