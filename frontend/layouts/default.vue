@@ -1,11 +1,11 @@
 <template witdh="100%" height="100" class="ma-0 pa-0">
   <v-app>
     <v-toolbar dense fluid height="60px" max-height="60px" color="#73777B" class="ma-0 pa-0">
-      
-     <router-link to="/" class="ma-0 pa-0">
-       <v-img contain min-height="50px" max-height="50px"  max-width="100px" src="logo.png" class="ma-0 pa-0"></v-img> 
+     <router-link to="/" class="ma-0 pa-0 text-left">
+       <v-img contain   min-height="60px" max-height="60px" max-width="120" src="logo.png" class="ma-0 pa-0"></v-img> 
      </router-link>
-      <router-link v-for="link in links" :key="link.tittle" :to="link.ref" class="hidden-sm-and-down">
+     
+      <router-link v-for="link in links" :key="link.tittle" :to="link.ref">
         <v-btn
           large
           plain
@@ -16,6 +16,11 @@
         </v-btn>
       </router-link>
       <v-spacer/>
+
+     
+
+      
+    
 
     </v-toolbar>
     
@@ -53,14 +58,13 @@
             style="color: white"
             class="text-right ma-0 pa-0"
           >
-            TTC
+            Tendencias Tecnologicas Computacionales 2022-01
           </v-col>
         </v-row>
       </v-card-text>
     </v-card>
   </v-app>
 </template>
-
 
 <script>
 export default {
@@ -76,13 +80,16 @@ export default {
       ],
       links: [
 
+
         {
           tittle: 'Registrar',
-          ref: '/',
+          ref: '/cameraCapture',
+
         },
+        
         {
-          tittle: 'Abrir Candado',
-          ref: '/sensor',
+          tittle: 'Usuarios Registrados',
+          ref: '/registredUsers',
 
         },
       ],

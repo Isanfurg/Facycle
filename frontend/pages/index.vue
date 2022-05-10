@@ -1,25 +1,12 @@
 <template>
-  <div>
-        <PhotoCapture v-model="imageBase64" />
-        <VideoCapture uploadUrl="localhost:3000" v-model="videoUrl" />
-    </div>
+  <v-card height="100%" color="#F1EEE9">
+
   </v-card>
 </template>
 
 <script>
-import {PhotoCapture, VideoCapture} from 'vue-media-recorder'
-
 export default {
-  name: 'IndexPage',
-  components:{
-       PhotoCapture,
-        VideoCapture
-    },
-  data() {
-    return {
-       imageBase64: '',
-            videoUrl: '',
-    }
-  },
+  components: {},
+  name: 'IndexPage'
 }
 </script>
